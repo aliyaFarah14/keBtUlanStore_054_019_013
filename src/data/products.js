@@ -1,7 +1,7 @@
 const products = [
   {
     id: 1,
-    nama: "ember",
+    nama: "ember merah",
     harga: 10000,
     image: "/products/ember.jpeg",
   },
