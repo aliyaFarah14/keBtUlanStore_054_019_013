@@ -5,7 +5,7 @@ export default function AdminHeader() {
       <button
         onClick={() => console.log("Logout diklik")}
         className="px-3 py-1 bg-pink-500 hover:bg-red-200 rounded">
-        Logout
+        Logout tombol (button)
       </button>
     </header>
   );
