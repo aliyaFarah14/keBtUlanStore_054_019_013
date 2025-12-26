@@ -15,7 +15,7 @@ export default function ProductCard({ nama, harga, image }) {
 
       <button
         onClick={() => console.log("Beli:", nama)}
-        className="mt-auto bg-blue-500 text-white px-3 py-1 rounded"
+        className="mt-auto bg-pink-500 hover:bg-pink-200 text-white px-3 py-1 rounded"
       >
         Beli
       </button>

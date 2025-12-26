@@ -8,9 +8,9 @@ export default function AdminDashboard() {
   const [products] = useState(productsData);
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-r from-pink-400 to-red-200 font-bold text-red-900 p-6">
       <AdminHeader />
       <DataTable products={products} />
-    </>
+    </div>
   );
 }
