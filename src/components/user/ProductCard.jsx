@@ -1,4 +1,7 @@
+// src/components/user/ProductCard.jsx
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 export default function ProductCard({
   nama,
@@ -8,7 +11,6 @@ export default function ProductCard({
   onDetail,
   onTambah,
 }) {
-
   const [clicked, setClicked] = useState(false);
 
   const formatHarga = (v) =>
@@ -17,67 +19,61 @@ export default function ProductCard({
   const handleTambah = () => {
     setClicked(true);
     onTambah?.(nama);
-    setTimeout(() => setClicked(false), 250);
+    setTimeout(() => setClicked(false), 500);
   };
 
   return (
-    <div className="
-      group border rounded-2xl p-4 bg-white flex flex-col
-      transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl
+    <Card className="
+      group flex flex-col
+      transition-all duration-300 hover:-translate-y-1 hover:shadow-md
     ">
-      {/* Image */}
-      <div className="relative w-full aspect-[4/3] bg-gray-50 rounded-xl overflow-hidden">
-        <img
-          src={image}
-          alt={nama}
-          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
-        />
-
-        {/* Hover overlay */}
-        <div
-          className="
-            absolute inset-0 bg-black/35 opacity-0
-            group-hover:opacity-100 transition flex items-center justify-center">
+      <CardContent className="p-4">
+        <div className="relative w-full aspect-[4/3] bg-gray-50 rounded-xl overflow-hidden">
+          <img
+            src={image}
+            alt={nama}
+            className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
+            onError={(e) => {
+              e.target.src = "https://via.placeholder.com/300x200/FFB6C1/FFFFFF?text=Gambar+Tidak+Ditemukan";
+            }}
+          />
         </div>
-      </div>
 
-      {/* Info */}
-      <span className="mt-3 inline-block text-xs font-semibold px-2 py-1 rounded-full bg-gray-100 text-gray-600">
-        {kategori}
-      </span>
+        <span className="mt-3 inline-block text-xs font-semibold px-2 py-1 rounded-full bg-gray-100 text-gray-600">
+          {kategori}
+        </span>
 
-      <h2 className="font-semibold mt-2 text-gray-900 leading-snug line-clamp-2">
-        {nama}
-      </h2>
+        <h2 className="font-semibold mt-2 text-gray-900 leading-snug line-clamp-2">
+          {nama}
+        </h2>
 
-      <p className="text-pink-600 font-bold text-lg mt-1">
-        Rp {formatHarga(harga)}
-      </p>
+        <p className="text-pink-600 font-bold text-lg mt-1">
+          Rp {formatHarga(harga)}
+        </p>
+      </CardContent>
 
-      {/* Actions */}
-      <div className="mt-4 grid grid-cols-2 gap-2">
-        <button
-          onClick={onDetail}
-          className="
-            border rounded-lg py-2 font-semibold
-            hover:bg-gray-50 transition
-          "
-        >
-          Detail
-        </button>
+      <CardFooter className="p-4 pt-0">
+        <div className="grid grid-cols-2 gap-2 w-full">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onDetail}
+            className="font-semibold"
+          >
+            Detail
+          </Button>
 
-        <button
-          onClick={handleTambah}
-          className={`
-            rounded-lg py-2 font-semibold text-white transition
-            ${clicked
-              ? "bg-pink-300 scale-95"
-              : "bg-pink-500 hover:bg-pink-600"}
-          `}
-        >
-          Tambah
-        </button>
-      </div>
-    </div>
+          <Button
+            variant="default"
+            size="sm"
+            onClick={handleTambah}
+            disabled={clicked}
+            className={clicked ? "bg-pink-300 scale-95" : ""}
+          >
+            {clicked ? "✓ Ditambahkan" : "Tambah"}
+          </Button>
+        </div>
+      </CardFooter>
+    </Card>
   );
 }
