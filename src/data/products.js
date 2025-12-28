@@ -17,6 +17,12 @@ const products = [
     harga: 20000,
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT58dUL-QY7uiFIfAbFxQY3jB6MJ-OjQ9wrRw&s",
   },
+  {
+    id: 4,
+    nama: "Rak piring",
+    harga: 45000,
+    image: "https://casaindonesia.com/lkgallery/images/p6sbtw_rak_piring_gantung.jpeg",
+  },
 ];
 
 export default products;
