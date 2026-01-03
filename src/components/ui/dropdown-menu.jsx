@@ -1,6 +1,6 @@
 import React from "react";
 import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
-import { Button } from "../button"; // pastikan tombol ShadCN ada di components/ui/button
+import { Button } from "../button"; 
 
 export default function DropdownMenu() {
   return (
