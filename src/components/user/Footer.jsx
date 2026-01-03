@@ -16,6 +16,7 @@ const Footer = () => {
         <div>
           <h3 className="font-semibold mb-3">Menu</h3>
           <ul className="space-y-2 text-gray-600">
+
             <li>
               <NavLink to="/" className="hover:text-pink-600 transition">
                 Home
@@ -33,6 +34,7 @@ const Footer = () => {
                 Cart
               </NavLink>
             </li>
+
           </ul>
         </div>
 

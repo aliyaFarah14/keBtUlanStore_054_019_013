@@ -52,8 +52,7 @@ export default function Cart() {
             <Button
               variant="outline"
               className="text-red-500 border-red-300 flex gap-2"
-              onClick={clearCart}
-            >
+              onClick={clearCart}>
               <Trash2 size={16} />
               Kosongkan
             </Button>
@@ -81,8 +80,7 @@ export default function Cart() {
                       <img
                         src={item.image}
                         alt={item.nama}
-                        className="w-24 h-24 rounded object-cover bg-gray-50"
-                      />
+                        className="w-24 h-24 rounded object-cover bg-gray-50"/>
 
                       <div>
                         <h2 className="font-semibold">{item.nama}</h2>
@@ -95,8 +93,7 @@ export default function Cart() {
                           <Button
                             variant="outline"
                             size="icon"
-                            onClick={() => decreaseQty(item.id)}
-                          >
+                            onClick={() => decreaseQty(item.id)}>
                             −
                           </Button>
 
@@ -105,8 +102,7 @@ export default function Cart() {
                           <Button
                             variant="outline"
                             size="icon"
-                            onClick={() => increaseQty(item.id)}
-                          >
+                            onClick={() => increaseQty(item.id)}>
                             +
                           </Button>
                         </div>
@@ -133,6 +129,13 @@ export default function Cart() {
             <Card className="h-fit">
               <CardContent className="p-6 space-y-4">
                 <h2 className="text-lg font-semibold">Ringkasan Pesanan</h2>
+
+                <div className="space-y-2 text-sm"></div>
+                {cart.map(item => (
+                    <div key={item.id} className="flex justify-between">
+                        <span>{item.nama} x {item.qty}</span>
+                        <span>Rp {(item.harga * item.qty).toLocaleString("id-ID")}</span>
+                    </div>))}
 
                 <div className="flex justify-between text-sm">
                   <span>Subtotal</span>

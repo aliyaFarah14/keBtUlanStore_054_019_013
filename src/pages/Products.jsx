@@ -23,8 +23,7 @@ export default function Products() {
               image={item.image}
               kategori={item.kategori}
               onDetail={() => navigate(`/products/${item.id}`)}
-              onTambah={() => navigate("/cart")}
-            />
+              onTambah={() => navigate("/cart")}/>
           ))}
         </div>
       </section>

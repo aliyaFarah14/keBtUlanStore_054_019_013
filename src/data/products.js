@@ -15,10 +15,10 @@ const products = [
   },
   {
     id: 3,
-    nama: "Lifebuoy Bodywash Lemon 300ml",
+    nama: "Lifebuoy Bodywash Lemon",
     harga: 20000,
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT58dUL-QY7uiFIfAbFxQY3jB6MJ-OjQ9wrRw&s",
-    deskripsi: "Bodywash Lifebuoy dengan aroma lemon, membersihkan kulit secara efektif."
+    deskripsi: "Bodywash Lifebuoy 300ml dengan aroma lemon, membersihkan kulit secara efektif."
   },
   {
     id: 4,
@@ -43,17 +43,17 @@ const products = [
   },
   {
     id: 7,
-    nama: "Rak Piring",
-    harga: 45000,
-    image: "https://casaindonesia.com/lkgallery/images/p6sbtw_rak_piring_gantung.jpeg",
-    deskripsi: "Rak piring praktis dan mudah dibersihkan, cocok untuk dapur modern."
+    nama: "Teflon",
+    harga: 102000,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT4hUPv4bhIPvZHz3RfaCNIlkrHF28-H1FbQ&s",
+    deskripsi: "Teflon anti lengket yang ringan, cepat panas, dan praktis untuk memasak sehari-hari."
   },
   {
     id: 8,
-    nama: "Rak Piring",
-    harga: 45000,
-    image: "https://casaindonesia.com/lkgallery/images/p6sbtw_rak_piring_gantung.jpeg",
-    deskripsi: "Rak piring praktis dan mudah dibersihkan, cocok untuk dapur modern."
+    nama: "Philips Rice Cooker",
+    harga: 879009,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4TYsxz-7Dm-4XGVMQH0kHeIDBsvyEAIOlOA&s",
+    deskripsi: "Rice Cooker Philips dikenal dengan kualitas tinggi, teknologi pemanas 3D, panci anti lengket yang kuat, serta kemampuan menjaga nasi tetap hangat hingga 48 jam."
   },
 
 ];

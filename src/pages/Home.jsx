@@ -7,6 +7,7 @@ import LayoutUser from "../components/user/LayoutUser";
 export default function Home() {
   const [products] = useState(productsData);
   const navigate = useNavigate();
+  const featuredProducts = products.slice(0, 4);
 
   return (
     <LayoutUser>
@@ -27,16 +28,14 @@ export default function Home() {
 
             <div className="flex gap-4">
               <button
-                onClick={() => navigate("/products")}
-                className="bg-pink-600 text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-pink-500 transition"
-              >
+                onClick={() => navigate("/produk")}
+                className="bg-pink-600 text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-pink-500 transition">
                 Lihat Produk
               </button>
 
               <button
-                onClick={() => navigate("/cart")}
-                className="border border-gray-300 px-5 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
-              >
+                onClick={() => navigate("/keranjang")}
+                className="border border-gray-300 px-5 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
                 Keranjang
               </button>
             </div>
@@ -47,8 +46,7 @@ export default function Home() {
             <img
               src="https://ix-marketing.imgix.net/how-it-works_design_auto-enhance2.png?auto=format,compress&w=1946"
               alt="Store Showcase"
-              className="rounded-xl object-cover w-full h-[280px]"
-            />
+              className="rounded-xl object-cover w-full h-[280px]"/>
           </div>
         </div>
       </section>
@@ -95,7 +93,7 @@ export default function Home() {
         <h2 className="text-2xl font-bold mb-6">Produk Pilihan</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
-          {products.map((item) => (
+          {featuredProducts.map((item) => (
             <ProductCard
               key={item.id}
               id={item.id}
@@ -104,9 +102,17 @@ export default function Home() {
               image={item.image}
               kategori={item.kategori}
               onDetail={() => navigate(`/products/${item.id}`)}
-              onTambah={() => navigate("/cart")}
-            />
+              onTambah={() => navigate("/cart")}/>
           ))}
+        </div>
+
+        {/* CTA – Lihat Semua Produk */}
+        <div className="mt-10 flex justify-center">
+          <button onClick={() => navigate("/products")}
+          className="bg-pink-600 text-white px-6 py-3 rounded-lg font-semibold shadow 
+          hover:bg-pink-500 active:scale-95 transition w-full sm:w-auto text-center"> 
+          Lihat Semua Produk →
+          </button>
         </div>
       </main>
 

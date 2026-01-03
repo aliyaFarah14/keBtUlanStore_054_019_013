@@ -35,8 +35,7 @@ export default function ProductCard({
   return (
     <Card className="
       group flex flex-col
-      transition-all duration-300 hover:-translate-y-1 hover:shadow-md
-    ">
+      transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       <CardContent className="p-4">
         <div className="relative w-full aspect-[4/3] bg-gray-50 rounded-xl overflow-hidden">
           <img
@@ -45,8 +44,7 @@ export default function ProductCard({
             className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
             onError={(e) => {
               e.target.src = "https://via.placeholder.com/300x200/FFB6C1/FFFFFF?text=Gambar+Tidak+Ditemukan";
-            }}
-          />
+            }}/>
         </div>
 
         <span className="mt-3 inline-block text-xs font-semibold px-2 py-1 rounded-full bg-gray-100 text-gray-600">
@@ -68,8 +66,7 @@ export default function ProductCard({
             variant="outline"
             size="sm"
             onClick={onDetail}
-            className="font-semibold"
-          >
+            className="font-semibold">
             Detail
           </Button>
 
@@ -78,8 +75,7 @@ export default function ProductCard({
             size="sm"
             onClick={handleTambah}
             disabled={clicked}
-            className={clicked ? "bg-pink-300 scale-95" : ""}
-          >
+            className={clicked ? "bg-pink-300 scale-95" : ""}>
             {clicked ? "✓ Ditambahkan" : "Tambah"}
           </Button>
         </div>
