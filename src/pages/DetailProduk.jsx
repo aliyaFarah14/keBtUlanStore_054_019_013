@@ -49,7 +49,7 @@ export default function DetailProduk() {
           </p>
 
           <p className="text-gray-600 mt-4">
-            Ini adalah deskripsi produk. Bisa kamu isi sesuai kebutuhan.
+            {produk.deskripsi}
           </p>
 
           <div className="flex gap-4 mt-6">

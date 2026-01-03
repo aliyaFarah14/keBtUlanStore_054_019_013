@@ -10,19 +10,91 @@ export default function Home() {
 
   return (
     <LayoutUser>
-      {/* Hero */}
-      <section className="py-16 px-4 text-center">
-        <h1 className="text-4xl font-bold text-pink-600 mb-3">
-          Temukan Produk Terbaik
-        </h1>
-        <p className="text-gray-600">
-          Produk berkualitas dengan harga terjangkau
-        </p>
+
+      {/* HERO SECTION */}
+      <section className="bg-pink-50 pt-28 pb-20">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+
+          {/* Left Content */}
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-5">
+              Temukan Perabotan Tempat Tinggal Anda
+            </h1>
+
+            <p className="text-gray-600 mb-10 text-lg">
+              Lengkapi kebutuhan rumah Anda dengan produk berkualitas dan harga terjangkau di keBtUlan Store.
+            </p>
+
+            <div className="flex gap-4">
+              <button
+                onClick={() => navigate("/products")}
+                className="bg-pink-600 text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-pink-500 transition"
+              >
+                Lihat Produk
+              </button>
+
+              <button
+                onClick={() => navigate("/cart")}
+                className="border border-gray-300 px-5 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+              >
+                Keranjang
+              </button>
+            </div>
+          </div>
+
+          {/* Right Image */}
+          <div className="bg-white rounded-2xl shadow-xl p-4">
+            <img
+              src="https://ix-marketing.imgix.net/how-it-works_design_auto-enhance2.png?auto=format,compress&w=1946"
+              alt="Store Showcase"
+              className="rounded-xl object-cover w-full h-[280px]"
+            />
+          </div>
+        </div>
       </section>
 
-      {/* Produk */}
-      <main className="px-6 pb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* FEATURE SECTION */}
+      <section className="bg-white py-16 border-t">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+
+          <div>
+            <div className="w-14 h-14 mx-auto bg-pink-100 rounded-full flex items-center justify-center mb-3">
+              <span className="text-2xl">📦</span>
+            </div>
+            <h3 className="font-semibold text-lg mb-1">Produk Berkualitas</h3>
+            <p className="text-gray-600 text-sm">
+              Hanya menjual produk original dengan kualitas terjamin
+            </p>
+          </div>
+
+          <div>
+            <div className="w-14 h-14 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-3">
+              <span className="text-2xl">🚚</span>
+            </div>
+            <h3 className="font-semibold text-lg mb-1">Pengiriman Cepat</h3>
+            <p className="text-gray-600 text-sm">
+              Proses pengiriman cepat ke seluruh Indonesia
+            </p>
+          </div>
+
+          <div>
+            <div className="w-14 h-14 mx-auto bg-violet-100 rounded-full flex items-center justify-center mb-3">
+              <span className="text-2xl">🛡️</span>
+            </div>
+            <h3 className="font-semibold text-lg mb-1">Garansi Resmi</h3>
+            <p className="text-gray-600 text-sm">
+              Semua produk dilengkapi dengan garansi resmi
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* PRODUK */}
+      <main className="max-w-7xl mx-auto px-6 pt-6 pb-20">
+        <h2 className="text-2xl font-bold mb-6">Produk Pilihan</h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
           {products.map((item) => (
             <ProductCard
               key={item.id}
@@ -37,6 +109,7 @@ export default function Home() {
           ))}
         </div>
       </main>
+
     </LayoutUser>
   );
 }
