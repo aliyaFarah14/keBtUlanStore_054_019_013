@@ -1,32 +1,23 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import productsData from "../data/products";
 import ProductCard from "../components/user/ProductCard";
 import LayoutUser from "../components/user/LayoutUser";
+import { useNavigate } from "react-router-dom";
 
-export default function Home() {
-  const [products] = useState(productsData);
+export default function Products() {
   const navigate = useNavigate();
 
   return (
     <LayoutUser>
-      {/* Hero */}
-      <section className="py-16 px-4 text-center">
-        <h1 className="text-4xl font-bold text-pink-600 mb-3">
-          Temukan Produk Terbaik
+      <section className="px-6 py-16">
+        <h1 className="text-3xl font-bold text-pink-600 mb-8">
+          Semua Produk
         </h1>
-        <p className="text-gray-600">
-          Produk berkualitas dengan harga terjangkau
-        </p>
-      </section>
 
-      {/* Produk */}
-      <main className="px-6 pb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((item) => (
+          {productsData.map((item) => (
             <ProductCard
               key={item.id}
-              id={item.id}
+              id={item.id}  
               nama={item.nama}
               harga={item.harga}
               image={item.image}
@@ -36,7 +27,7 @@ export default function Home() {
             />
           ))}
         </div>
-      </main>
+      </section>
     </LayoutUser>
   );
 }

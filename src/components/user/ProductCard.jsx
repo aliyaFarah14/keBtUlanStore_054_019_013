@@ -1,9 +1,11 @@
-// src/components/user/ProductCard.jsx
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { useCart } from "@/context/CartContext";
+
 
 export default function ProductCard({
+  id,
   nama,
   harga,
   image,
@@ -11,6 +13,8 @@ export default function ProductCard({
   onDetail,
   onTambah,
 }) {
+
+  const { addToCart } = useCart();
   const [clicked, setClicked] = useState(false);
 
   const formatHarga = (v) =>
@@ -18,9 +22,15 @@ export default function ProductCard({
 
   const handleTambah = () => {
     setClicked(true);
-    onTambah?.(nama);
-    setTimeout(() => setClicked(false), 500);
-  };
+    addToCart({
+      id,
+      nama,
+      harga,
+      image,
+     });
+     onTambah?.(nama); 
+     setTimeout(() => setClicked(false), 500);
+    };
 
   return (
     <Card className="

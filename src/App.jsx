@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import Products from "./pages/Products";
+import Cart from "./pages/Cart";
 import AdminDashboard from "./pages/AdminDashboard";
+import DetailProduk from "./pages/DetailProduk";
 
 export default function App() {
-  const [page, setPage] = useState("user");
-
   return (
-    <>
-      <div className="p-4 space-x-2">
-        <button onClick={() => setPage("user")}>User</button>
-        <button onClick={() => setPage("admin")}>Admin</button>
-      </div>
-
-      {page === "user" ? <Home /> : <AdminDashboard />}
-    </>
+    <BrowserRouter basename="/aliyaFarah14/keBtUlanStore_054_019_013">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<DetailProduk />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
