@@ -6,7 +6,7 @@ import {
   TableHead,
   TableCell,
 } from "../ui/table";
-import { Pencil } from "lucide-react"; // import ikon pensil
+import { Pencil } from "lucide-react";
 
 export default function DataTable({ products, onDelete, onEdit }) {
   return (
@@ -52,7 +52,7 @@ export default function DataTable({ products, onDelete, onEdit }) {
             </TableCell>
 
             <TableCell className="flex gap-2">
-              {/* Tombol edit dengan ikon pensil di kotak */}
+              {/*Untuk Tombol edit dengan ikon pensil di kotak */}
               <button
                 type="button"
                 onClick={() => onEdit(item.id)}
@@ -60,8 +60,6 @@ export default function DataTable({ products, onDelete, onEdit }) {
               >
                 <Pencil size={16} />
               </button>
-
-              {/* Tombol hapus */}
               <button
                 type="button"
                 onClick={() => onDelete(item.id)}

@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const AdminLogin = () => {
   const [activeTab, setActiveTab] = useState('login');
@@ -9,32 +16,42 @@ const AdminLogin = () => {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [showLoginSuccess, setShowLoginSuccess] = useState(false);
+  const [showRegisterSuccess, setShowRegisterSuccess] = useState(false);
 
-  const [success, setSuccess] = useState(false); // ✅ state notifikasi
   const navigate = useNavigate();
 
+  // Submit untk Login
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     if (loginPassword === 'admin123') {
-      setSuccess(true); // tampilkan toast
-      setTimeout(() => setSuccess(false), 3000); // hilang 3 detik
-
-      // arahkan ke dashboard setelah 1 detik
-      setTimeout(() => navigate('/admin-dashboard'), 1000);
+      setLoginError('');
+      setShowLoginSuccess(true)
+      setTimeout(() => {
+        setShowLoginSuccess(false);
+        navigate('/admin-dashboard');
+      }, 1500);
     } else {
-      alert('Password salah! Coba: admin123');
+      setLoginError('Email atau password yang Anda masukkan salah. Silahkan coba lagi.');
     }
   };
 
+  // Submit untuk Register
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
     if (registerPassword !== registerConfirmPassword) {
       alert('Password tidak cocok!');
       return;
     }
-    alert('Registrasi berhasil!');
-    setActiveTab('login');
-    setLoginPassword('');
+
+    setShowRegisterSuccess(true);
+    setTimeout(() => {
+      setShowRegisterSuccess(false);
+      setActiveTab('login');
+      setLoginEmail(registerEmail);
+      setLoginPassword(registerPassword);
+    }, 1500);
   };
 
   const tabClass = (tab) =>
@@ -61,17 +78,24 @@ const AdminLogin = () => {
           </button>
         </div>
 
-        {/* LOGIN */}
+        {/*LOGIN*/}
         {activeTab === 'login' && (
           <form onSubmit={handleLoginSubmit} className="space-y-4 text-left">
+            {loginError && (
+              <div className="flex items-start gap-2 rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+                <span>{loginError}</span>
+              </div>
+            )}
+
             <input
               type="email"
               placeholder="Masukkan Email"
               value={loginEmail}
               onChange={(e) => setLoginEmail(e.target.value)}
               required
-              className="w-full p-2 border border-gray-400 rounded-lg"
-            />
+              className={`w-full p-2 rounded-lg border ${
+                loginError ? 'border-red-400 bg-red-50' : 'border-gray-400'
+              }`}/>
 
             <div className="flex items-center border border-gray-400 rounded-lg bg-gray-50 px-3">
               <svg className="w-4 h-4 text-gray-500 mr-2" fill="currentColor" viewBox="0 0 24 24">
@@ -107,7 +131,7 @@ const AdminLogin = () => {
           </form>
         )}
 
-        {/* REGISTER */}
+        {/*REGISTER*/}
         {activeTab === 'register' && (
           <form onSubmit={handleRegisterSubmit} className="space-y-4 text-left">
             <input
@@ -167,12 +191,27 @@ const AdminLogin = () => {
           </form>
         )}
 
-        {/*Notifikasi popup login berhasil */}
-        {success && (
-          <div className="fixed top-4 right-4 bg-pink-600 text-white px-4 py-2 rounded shadow-lg z-50">
-            Login berhasil!
-          </div>
-        )}
+        {/*Ini UNtuk Dialog Login Berhasil*/}
+        <Dialog open={showLoginSuccess} onOpenChange={setShowLoginSuccess}>
+          <DialogContent className="sm:max-w-[400px]">
+            <DialogHeader>
+              <DialogTitle>Login Berhasil!</DialogTitle>
+              <DialogDescription>Selamat datang di dashboard admin.</DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+
+        {/* Dialog Registrasi Berhasil */}
+        <Dialog open={showRegisterSuccess} onOpenChange={setShowRegisterSuccess}>
+          <DialogContent className="sm:max-w-[400px]">
+            <DialogHeader>
+              <DialogTitle>Registrasi Berhasil!</DialogTitle>
+              <DialogDescription>
+                Silakan login menggunakan email dan password baru Anda.
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

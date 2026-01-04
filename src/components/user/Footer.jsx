@@ -2,11 +2,11 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="mt-32 bg-gray-50 border-t">
+    <footer className="mt-32 bg-gradient-to-b from-pink-200 to-pink-500 border-t">
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
 
         <div>
-          <h1 className="text-2xl font-bold mb-3">Kebtulan Store</h1>
+          <h1 className="text-2xl font-bold mb-3">keBtUlan Store</h1>
           <p className="text-gray-600">
             Toko terpercaya untuk perabotan anak kos ataupun rumah keluarga Anda.
           </p>
@@ -49,8 +49,8 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t py-4 text-center text-gray-600 text-sm">
-        © {new Date().getFullYear()} Kebtulan Store — All Rights Reserved
+      <div className="border-t py-4 text-center text-gray-800 text-sm">
+        © {new Date().getFullYear()} keBtUlan Store — All Rights Reserved
       </div>
     </footer>
   );

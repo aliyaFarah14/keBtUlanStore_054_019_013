@@ -13,7 +13,7 @@ export default function Home() {
     <LayoutUser>
 
       {/* HERO SECTION */}
-      <section className="bg-pink-50 pt-28 pb-20">
+      <section className="bg-gradient-to-b from-pink-50 to-pink-400 pt-28 pb-20">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
 
           {/* Left Content */}
@@ -28,14 +28,14 @@ export default function Home() {
 
             <div className="flex gap-4">
               <button
-                onClick={() => navigate("/produk")}
+                onClick={() => navigate("/products")}
                 className="bg-pink-600 text-white px-5 py-3 rounded-lg font-semibold shadow hover:bg-pink-500 transition">
                 Lihat Produk
               </button>
 
               <button
-                onClick={() => navigate("/keranjang")}
-                className="border border-gray-300 px-5 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                onClick={() => navigate("/cart")}
+                className="border border-gray-300 px-5 py-3 rounded-lg font-semibold bg-white/70 hover:bg-gray-100 transition">
                 Keranjang
               </button>
             </div>
@@ -52,7 +52,7 @@ export default function Home() {
       </section>
 
       {/* FEATURE SECTION */}
-      <section className="bg-white py-16 border-t">
+      <section className="py-16 border-t bg-gradient-to-r from-orange-50 via-pink-100 to-violet-50">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
 
           <div>
@@ -90,7 +90,7 @@ export default function Home() {
 
       {/* PRODUK */}
       <main className="max-w-7xl mx-auto px-6 pt-6 pb-20">
-        <h2 className="text-2xl font-bold mb-6">Produk Pilihan</h2>
+        <h2 className="text-2xl text-center font-bold mt-6 mb-6">Produk Pilihan</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
           {featuredProducts.map((item) => (

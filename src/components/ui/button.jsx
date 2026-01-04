@@ -1,4 +1,3 @@
-// src/components/ui/button.jsx
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
@@ -13,7 +12,6 @@ const Button = React.forwardRef(({
       className={cn(
         "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background",
         {
-          // Default (pink)
           "bg-pink-500 text-white hover:bg-pink-600": variant === "default",
           // Destructive (red)
           "bg-red-500 text-white hover:bg-red-600": variant === "destructive",

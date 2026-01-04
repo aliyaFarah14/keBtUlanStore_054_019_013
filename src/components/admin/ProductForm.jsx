@@ -13,7 +13,7 @@ export default function ProductForm({ onAdd }) {
 
     if (!nama || !harga || !stock) return;
 
-    console.log("handleSubmit terpanggil"); // debug
+    console.log("handleSubmit terpanggil");
     onAdd({
       id: Date.now(),
       nama,

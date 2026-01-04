@@ -1,10 +1,10 @@
 import { createContext, useState } from "react";
-import productsData from "../data/products"; // import data awal
+import productsData from "../data/products";
 
 export const ProductContext = createContext();
 
 export function ProductProvider({ children }) {
-  const [products, setProducts] = useState(productsData); // gunakan data awal
+  const [products, setProducts] = useState(productsData);
 
   // Tambah produk baru
   const addProduct = (product) => {
