@@ -16,7 +16,7 @@ export default function AdminHeader() {
         </div>
 
         <div className="flex gap-3">
-          {/* Tombol "Ke Halaman Publik" */}
+
           <button
             onClick={() => navigate('/')}
             className="flex items-center gap-2 px-4 py-2 bg-red-100 border border-gray-300 rounded-lg text-pink-800 hover:bg-pink-300 transition"
@@ -27,9 +27,8 @@ export default function AdminHeader() {
             Ke Halaman Publik
           </button>
 
-          {/* Tombol "Tambah Produk" */}
           <button
-            onClick={() => navigate('/admin/tambah-produk')}  // <-- arahkan ke halaman baru
+            onClick={() => navigate('/admin/tambah-produk')}
             className="flex items-center gap-2 px-4 py-2 bg-red-100 text-pink-800 rounded-lg font-medium hover:bg-pink-300 transition"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

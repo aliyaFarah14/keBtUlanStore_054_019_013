@@ -21,8 +21,7 @@ const AdminLogin = () => {
   const [showRegisterSuccess, setShowRegisterSuccess] = useState(false);
 
   const navigate = useNavigate();
-
-  // Submit untk Login
+  
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     if (loginPassword === 'admin123') {
@@ -37,7 +36,6 @@ const AdminLogin = () => {
     }
   };
 
-  // Submit untuk Register
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
     if (registerPassword !== registerConfirmPassword) {
@@ -201,7 +199,6 @@ const AdminLogin = () => {
           </DialogContent>
         </Dialog>
 
-        {/* Dialog Registrasi Berhasil */}
         <Dialog open={showRegisterSuccess} onOpenChange={setShowRegisterSuccess}>
           <DialogContent className="sm:max-w-[400px]">
             <DialogHeader>

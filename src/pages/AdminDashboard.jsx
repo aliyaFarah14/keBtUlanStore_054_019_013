@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ import navigate
+import { useNavigate } from "react-router-dom";
 import AdminHeader from "../components/admin/AdminHeader";
 import DataTable from "../components/admin/DataTable";
 import ConfirmDeleteDialog from "../components/admin/ConfirmDeleteDialog";
@@ -10,7 +10,7 @@ export default function AdminDashboard() {
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
 
-  const navigate = useNavigate(); // untuk navigasi ke halaman edit
+  const navigate = useNavigate();
 
   const openDeleteDialog = (id) => {
     setSelectedId(id);
@@ -23,7 +23,6 @@ export default function AdminDashboard() {
     setSelectedId(null);
   };
 
-  // ✅ handler untuk tombol edit
   const handleEdit = (id) => {
     navigate(`/admin/edit-produk/${id}`);
   };
@@ -37,7 +36,7 @@ export default function AdminDashboard() {
         <DataTable
           products={products}
           onDelete={openDeleteDialog}
-          onEdit={handleEdit} // pass prop baru
+          onEdit={handleEdit}
         />
       </div>
 

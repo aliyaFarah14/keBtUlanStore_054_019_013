@@ -3,6 +3,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import AdminHeader from "../components/admin/AdminHeader";
 import { ProductContext } from "../context/ProductContext";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+
 export default function EditProduk() {
   const { id } = useParams();
   const { products, editProduct } = useContext(ProductContext);
@@ -14,6 +25,8 @@ export default function EditProduk() {
   const [harga, setHarga] = useState("");
   const [stock, setStock] = useState("");
   const [image, setImage] = useState("");
+
+  const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
     if (productToEdit) {
@@ -32,6 +45,12 @@ export default function EditProduk() {
       stock: Number(stock),
       image,
     });
+
+    setOpenDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
     navigate("/admin-dashboard");
   };
 
@@ -41,7 +60,6 @@ export default function EditProduk() {
       <div className="max-w-2xl mx-auto mt-6">
         <h2 className="text-xl font-bold mb-4">Edit Produk</h2>
 
-        {/* Tombol Kembali */}
         <button
           onClick={() => navigate(-1)}
           className="mb-4 px-4 py-2 bg-red-200 hover:bg-pink-400 rounded shadow"
@@ -51,7 +69,7 @@ export default function EditProduk() {
 
         <form
           onSubmit={handleUpdate}
-          className="bg-white p-4 rounded-md shadow space-y-3"
+          className="bg-white p-4 rounded-md shadow space-y-3 relative"
         >
           <input
             placeholder="Nama Produk"
@@ -86,6 +104,20 @@ export default function EditProduk() {
             Simpan Perubahan
           </button>
         </form>
+
+        <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Berhasil!</DialogTitle>
+              <DialogDescription>
+                Produk berhasil diperbarui.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button onClick={handleDialogClose}>OK</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

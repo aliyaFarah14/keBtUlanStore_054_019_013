@@ -6,17 +6,14 @@ export const ProductContext = createContext();
 export function ProductProvider({ children }) {
   const [products, setProducts] = useState(productsData);
 
-  // Tambah produk baru
   const addProduct = (product) => {
     setProducts((prev) => [...prev, product]);
   };
 
-  // Hapus produk berdasarkan id
   const deleteProduct = (id) => {
     setProducts((prev) => prev.filter((item) => item.id !== id));
   };
-
-  // Edit produk berdasarkan id
+  
   const editProduct = (id, updatedData) => {
     setProducts((prev) =>
       prev.map((item) =>
