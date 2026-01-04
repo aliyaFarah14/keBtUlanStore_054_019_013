@@ -10,13 +10,17 @@ const AdminLogin = () => {
   const [registerPassword, setRegisterPassword] = useState('');
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState('');
 
+  const [success, setSuccess] = useState(false); // ✅ state notifikasi
   const navigate = useNavigate();
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     if (loginPassword === 'admin123') {
-      alert('Login berhasil!');
-      navigate('/admin-dashboard');
+      setSuccess(true); // tampilkan toast
+      setTimeout(() => setSuccess(false), 3000); // hilang 3 detik
+
+      // arahkan ke dashboard setelah 1 detik
+      setTimeout(() => navigate('/admin-dashboard'), 1000);
     } else {
       alert('Password salah! Coba: admin123');
     }
@@ -161,6 +165,13 @@ const AdminLogin = () => {
               </span>
             </p>
           </form>
+        )}
+
+        {/*Notifikasi popup login berhasil */}
+        {success && (
+          <div className="fixed top-4 right-4 bg-pink-600 text-white px-4 py-2 rounded shadow-lg z-50">
+            Login berhasil!
+          </div>
         )}
       </div>
     </div>

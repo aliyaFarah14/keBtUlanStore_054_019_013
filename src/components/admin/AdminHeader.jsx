@@ -29,7 +29,7 @@ export default function AdminHeader() {
 
           {/* Tombol "Tambah Produk" */}
           <button
-            onClick={() => alert('Fitur Tambah Produk belum diimplementasi')}
+            onClick={() => navigate('/admin/tambah-produk')}  // <-- arahkan ke halaman baru
             className="flex items-center gap-2 px-4 py-2 bg-red-100 text-pink-800 rounded-lg font-medium hover:bg-pink-300 transition"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
