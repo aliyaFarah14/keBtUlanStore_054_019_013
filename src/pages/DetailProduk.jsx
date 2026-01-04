@@ -27,7 +27,7 @@ export default function DetailProduk() {
     <LayoutUser>
       <div className="max-w-4xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
         
-        {/* Gambar */}
+        {/* gambar */}
         <div className="bg-white rounded-xl p-6 shadow">
           <img
             src={produk.image}
@@ -36,7 +36,7 @@ export default function DetailProduk() {
           />
         </div>
 
-        {/* Info */}
+        {/* info */}
         <div>
           <span className="text-sm text-gray-500">
             {produk.kategori}

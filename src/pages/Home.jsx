@@ -16,7 +16,7 @@ export default function Home() {
       <section className="bg-gradient-to-b from-pink-50 to-pink-400 pt-28 pb-20">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
 
-          {/* Left Content */}
+          {/* konten website bagian kiri */}
           <div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-5">
               Temukan Perabotan Tempat Tinggal Anda
@@ -41,7 +41,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Image */}
+          {/* konten bagian kanan */}
           <div className="bg-white rounded-2xl shadow-xl p-4">
             <img
               src="https://ix-marketing.imgix.net/how-it-works_design_auto-enhance2.png?auto=format,compress&w=1946"
@@ -51,7 +51,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURE SECTION */}
+      {/* bagian feature */}
       <section className="py-16 border-t bg-gradient-to-r from-orange-50 via-pink-100 to-violet-50">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
 
@@ -106,7 +106,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* CTA – Lihat Semua Produk */}
+        {/* Lihat Semua Produk */}
         <div className="mt-10 flex justify-center">
           <button onClick={() => navigate("/products")}
           className="bg-pink-600 text-white px-6 py-3 rounded-lg font-semibold shadow 

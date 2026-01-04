@@ -5,7 +5,7 @@ const CartContext = createContext(null);
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
-  // tambah produk / tambah qty
+  // untuk nambah produk dan nambah jumlah produk di cart
   const addToCart = (product) => {
     setCart((prev) => {
       const found = prev.find((item) => item.id === product.id);
@@ -22,7 +22,7 @@ export function CartProvider({ children }) {
     });
   };
 
-  // tambah qty (+)
+  // ini untuk nambah jumlah (+) 
   const increaseQty = (id) => {
     setCart((prev) =>
       prev.map((item) =>
@@ -33,7 +33,7 @@ export function CartProvider({ children }) {
     );
   };
 
-  // kurang qty (-)
+  // ngurangin jumlah (-)
   const decreaseQty = (id) => {
     setCart((prev) =>
       prev
@@ -46,12 +46,12 @@ export function CartProvider({ children }) {
     );
   };
 
-  // hapus 1 produk
+  // apus 1 produk
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
-  // kosongkan cart
+  // ngosongin cart
   const clearCart = () => {
     setCart([]);
   };

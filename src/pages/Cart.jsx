@@ -38,10 +38,9 @@ export default function Cart() {
   return (
     <LayoutUser>
       <div className="max-w-7xl mx-auto px-6 py-16 space-y-8">
-
         {/* HEADER */}
         <div className="flex items-start justify-between flex-wrap gap-4">
-        {/* Tombol Kembali */}
+        {/* tombol kembali */}
         <button
           type="button"
           onClick={() => navigate("/products")}
@@ -69,7 +68,7 @@ export default function Cart() {
           )}
         </div>
 
-        {/* EMPTY STATE */}
+        {/* cart kosong */}
         {cart.length === 0 && (
           <p className="text-center text-gray-500 py-20">
             Keranjang masih kosong
@@ -79,13 +78,13 @@ export default function Cart() {
         {cart.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            {/* CART ITEMS */}
+            {/* daftar produk di cart */}
             <div className="lg:col-span-2 space-y-4">
               {cart.map((item) => (
                 <Card key={item.id}>
                   <CardContent className="flex items-center justify-between p-4 gap-4">
 
-                    {/* LEFT SIDE */}
+                    {/* sisi kiri penempatan produk cart  */}
                     <div className="flex items-center gap-4 flex-1">
                       <img
                         src={item.image}
@@ -98,7 +97,7 @@ export default function Cart() {
                           Rp {item.harga.toLocaleString("id-ID")}
                         </p>
 
-                        {/* QTY CONTROLS */}
+                        {/* buat ngontrol qty */}
                         <div className="flex items-center gap-2 mt-2">
                           <Button
                             variant="outline"
@@ -119,7 +118,7 @@ export default function Cart() {
                       </div>
                     </div>
 
-                    {/* RIGHT SIDE */}
+                    {/* sisi kanan penempatan produk cart */}
                     <div className="flex items-center gap-4">
                       <p className="font-semibold">
                         Rp {(item.harga * item.qty).toLocaleString("id-ID")}
@@ -135,7 +134,7 @@ export default function Cart() {
               ))}
             </div>
 
-            {/* SUMMARY */}
+            {/* ringkasan pesanan */}
             <Card className="h-fit">
               <CardContent className="p-6 space-y-4">
                 <h2 className="text-lg font-semibold">Ringkasan Pesanan</h2>
