@@ -2,10 +2,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import productsData from "../data/products";
 import LayoutUser from "../components/user/LayoutUser";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/context/CartContext";
 
 export default function DetailProduk() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   const produk = productsData.find(
     (item) => item.id.toString() === id
@@ -48,12 +50,20 @@ export default function DetailProduk() {
             Rp {produk.harga.toLocaleString("id-ID")}
           </p>
 
+          <p className="mt-4 text-sm font-semibold"> 
+            Stok:<span className="ml-2 font-semibold text-gray-700">
+              {produk.stock} </span>
+          </p>
+
           <p className="text-gray-600 mt-4">
             {produk.deskripsi}
           </p>
 
           <div className="flex gap-4 mt-6">
-            <Button onClick={() => navigate("/cart")}>
+            <Button onClick={() => {
+              addToCart(produk);
+              navigate("/cart");
+            }}>
               Tambah ke Cart
             </Button>
 

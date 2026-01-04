@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Trash2, MessageCircle } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const { cart, removeFromCart, clearCart, increaseQty, decreaseQty } = useCart();
+  const navigate = useNavigate();
 
   const subtotal = cart.reduce(
     (total, item) => total + item.harga * item.qty,
@@ -39,11 +41,19 @@ export default function Cart() {
 
         {/* HEADER */}
         <div className="flex items-start justify-between flex-wrap gap-4">
+        {/* Tombol Kembali */}
+        <button
+          type="button"
+          onClick={() => navigate("/products")}
+          className="bg-pink-200 hover:bg-pink-300 text-pink-800 font-bold px-4 py-2 rounded">
+          ← Kembali
+        </button>
+
           <div>
-            <h1 className="text-3xl font-bold text-pink-600">
+            <h1 className="text-3xl text-center font-bold text-pink-600">
               Keranjang Belanja
             </h1>
-            <p className="text-pink-800 font-semibold mt-1">
+            <p className="text-pink-800 text-center font-semibold mt-1">
               {cart.length} produk di keranjang Anda
             </p>
           </div>

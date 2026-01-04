@@ -1,11 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { Home, ShoppingCart, Boxes, User } from "lucide-react";
-import { useCart } from "../../context/CartContext";
+import CartBadge from "./CartBadge";
 
 export default function Navbar() {
-  const { cart } = useCart();
-  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-
   const baseClass =
     "flex items-center gap-2 relative transition hover:text-pink-200";
   const activeClass = "text-pink-300";
@@ -28,8 +25,7 @@ export default function Navbar() {
             end
             className={({ isActive }) =>
               `${baseClass} ${isActive ? activeClass : ""}`
-            }
-          >
+            }>
             <Home size={18} />
             <span>Home</span>
           </NavLink>
@@ -39,8 +35,7 @@ export default function Navbar() {
             to="/products"
             className={({ isActive }) =>
               `${baseClass} ${isActive ? activeClass : ""}`
-            }
-          >
+            }>
             <Boxes size={18} />
             <span>Product</span>
           </NavLink>
@@ -50,17 +45,11 @@ export default function Navbar() {
             to="/cart"
             className={({ isActive }) =>
               `${baseClass} ${isActive ? activeClass : ""}`
-            }
-          >
+            }>
             <div className="relative flex items-center gap-2">
               <ShoppingCart size={18} />
               <span>Cart</span>
-
-              {totalItems > 0 && (
-                <span className="absolute -top-2 -right-3 bg-pink-300 text-pink-900 text-[10px] font-bold px-1.5 rounded-full">
-                  {totalItems}
-                </span>
-              )}
+              <CartBadge />
             </div>
           </NavLink>
           

@@ -6,10 +6,12 @@ import Cart from "./pages/Cart";
 import AdminDashboard from "./pages/AdminDashboard";
 import DetailProduk from "./pages/DetailProduk";
 import AdminLogin from './pages/AdminLogin';
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function App() {
   return (
     <BrowserRouter basename="/aliyaFarah14/keBtUlanStore_054_019_013">
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
