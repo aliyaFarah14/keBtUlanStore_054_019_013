@@ -28,19 +28,19 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-pink-300 p-6">
+    <div className="bg-pink-300 p-6">
       <AdminHeader />
 
       <div className="max-w-7xl mx-auto mt-6">
-        {/* TABEL */}
-        <DataTable
-          products={products}
-          onDelete={openDeleteDialog}
-          onEdit={handleEdit}
-        />
+        <div className="w-full overflow-x-auto">
+          <DataTable
+            products={products}
+            onDelete={openDeleteDialog}
+            onEdit={handleEdit}
+          />
+        </div>  
       </div>
 
-      {/* DIALOG */}
       <ConfirmDeleteDialog
         open={open}
         onClose={() => setOpen(false)}

@@ -15,7 +15,7 @@ export default function AdminHeader() {
           <h1 className="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-col gap-3 md:flex-row md:gap-3">
 
           <button
             onClick={() => navigate('/')}
