@@ -1,7 +1,7 @@
 import LayoutUser from "../components/user/LayoutUser";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Trash2, MessageCircle } from "lucide-react";
+import { Trash2, MessageCircle, ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,6 @@ export default function Cart() {
     (total, item) => total + item.harga * item.qty,
     0
   );
-
   const ongkir = cart.length > 0 ? 20000 : 0;
   const total = subtotal + ongkir;
 
@@ -70,9 +69,12 @@ export default function Cart() {
 
         {/* cart kosong */}
         {cart.length === 0 && (
-          <p className="text-center text-gray-500 py-20">
-            Keranjang masih kosong
-          </p>
+          <div className="text-center py-24 space-y-4">
+            <ShoppingCart className="mx-auto w-14 h-14 text-gray-300" />
+            <h2 className="text-2xl font-bold">Keranjang Kosong</h2>
+            <p className="text-gray-500"> Belum ada produk di keranjang Anda </p>
+            <Button onClick={() => navigate("/products")}> Mulai Belanja </Button>
+         </div>
         )}
 
         {cart.length > 0 && (
@@ -82,14 +84,14 @@ export default function Cart() {
             <div className="lg:col-span-2 space-y-4">
               {cart.map((item) => (
                 <Card key={item.id}>
-                  <CardContent className="flex items-center justify-between p-4 gap-4">
+                  <CardContent className="grid grid-cols-[auto_1fr_auto] gap-4 p-4 items-center">
 
                     {/* sisi kiri penempatan produk cart  */}
                     <div className="flex items-center gap-4 flex-1">
                       <img
                         src={item.image}
                         alt={item.nama}
-                        className="w-24 h-24 rounded object-cover bg-gray-50"/>
+                        className="w-20 h-20 md:w-24 md:h-24 rounded object-cover bg-gray-50"/>
 
                       <div>
                         <h2 className="font-semibold">{item.nama}</h2>
@@ -98,7 +100,7 @@ export default function Cart() {
                         </p>
 
                         {/* buat ngontrol qty */}
-                        <div className="flex items-center gap-2 mt-2">
+                        <div className="flex items-center gap-3 mt-2">
                           <Button
                             variant="outline"
                             size="icon"
@@ -119,7 +121,7 @@ export default function Cart() {
                     </div>
 
                     {/* sisi kanan penempatan produk cart */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col items-end justify-between h-full">
                       <p className="font-semibold">
                         Rp {(item.harga * item.qty).toLocaleString("id-ID")}
                       </p>

@@ -29,7 +29,7 @@ export default function ProductCard({
       image,
      });
      onTambah?.(nama); 
-     setTimeout(() => setClicked(false), 500);
+     setTimeout(() => setClicked(false), 2000);
     };
 
   return (

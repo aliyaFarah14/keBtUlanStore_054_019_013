@@ -10,6 +10,7 @@ import TambahProduk from "./pages/TambahProduk";
 import EditProduk from "./pages/EditProduk";
 import { ProductProvider } from "./context/ProductContext";
 import ScrollToTop from "@/components/ScrollToTop";
+import HalNotFound from "./pages/HalNotFound";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/admin/tambah-produk" element={<TambahProduk />} />
           <Route path="/admin/edit-produk/:id" element={<EditProduk />} />
           <Route path="/login" element={<AdminLogin />} />
+          <Route path="*" element={<HalNotFound />} />
         </Routes>
       </BrowserRouter>
     </ProductProvider>
