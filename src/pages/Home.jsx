@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import productsData from "../data/products";
 import ProductCard from "../components/user/ProductCard";
 import LayoutUser from "../components/user/LayoutUser";
 
 export default function Home() {
-  const [products] = useState(productsData);
+  // const [products] = useState(productsData);
   const navigate = useNavigate();
-  const featuredProducts = products.slice(0, 4);
+  const [products, setProducts] = useState([]);
+  // const featuredProducts = products.slice(0, 4);
+
+  useEffect(() => {
+    fetch("https://695c746e79f2f34749d43d5c.mockapi.io/product")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data.slice(0, 4)); // ambil 4 produk saja
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
 
   return (
     <LayoutUser>
@@ -93,7 +103,7 @@ export default function Home() {
         <h2 className="text-2xl text-center font-bold mt-6 mb-6">Produk Pilihan</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
-          {featuredProducts.map((item) => (
+          {products.map((item) => (
             <ProductCard
               key={item.id}
               id={item.id}

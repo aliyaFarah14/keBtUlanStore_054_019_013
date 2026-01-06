@@ -3,17 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { useCart } from "@/context/CartContext";
 
-
-export default function ProductCard({
+const ProductCard = ({
   id,
   nama,
   harga,
   image,
   kategori = "Produk",
   onDetail,
-  onTambah,
-}) {
-
+}) => {
   const { addToCart } = useCart();
   const [clicked, setClicked] = useState(false);
 
@@ -22,20 +19,12 @@ export default function ProductCard({
 
   const handleTambah = () => {
     setClicked(true);
-    addToCart({
-      id,
-      nama,
-      harga,
-      image,
-     });
-     onTambah?.(nama); 
-     setTimeout(() => setClicked(false), 2000);
-    };
+    addToCart({ id, nama, harga, image });
+    setTimeout(() => setClicked(false), 2000);
+  };
 
   return (
-    <Card className="
-      group flex flex-col
-      transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+    <Card className="group flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       <CardContent className="p-4">
         <div className="relative w-full aspect-[4/3] bg-gray-50 rounded-xl overflow-hidden">
           <img
@@ -43,8 +32,10 @@ export default function ProductCard({
             alt={nama}
             className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
             onError={(e) => {
-              e.target.src = "https://via.placeholder.com/300x200/FFB6C1/FFFFFF?text=Gambar+Tidak+Ditemukan";
-            }}/>
+              e.target.src =
+                "https://via.placeholder.com/300x200/FFB6C1/FFFFFF?text=Gambar+Tidak+Ditemukan";
+            }}
+          />
         </div>
 
         <span className="mt-3 inline-block text-xs font-semibold px-2 py-1 rounded-full bg-gray-100 text-gray-600">
@@ -62,24 +53,22 @@ export default function ProductCard({
 
       <CardFooter className="p-4 pt-0">
         <div className="grid grid-cols-2 gap-2 w-full">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={onDetail}
-            className="font-semibold">
+          <Button variant="outline" size="sm" onClick={onDetail}>
             Detail
           </Button>
 
           <Button
-            variant="default"
             size="sm"
             onClick={handleTambah}
             disabled={clicked}
-            className={clicked ? "bg-pink-300 scale-95" : ""}>
+            className={clicked ? "bg-pink-300 scale-95" : ""}
+          >
             {clicked ? "✓ Ditambahkan" : "Tambah"}
           </Button>
         </div>
       </CardFooter>
     </Card>
   );
-}
+};
+
+export default ProductCard;
