@@ -19,37 +19,79 @@ const AdminLogin = () => {
   const [loginError, setLoginError] = useState('');
   const [showLoginSuccess, setShowLoginSuccess] = useState(false);
   const [showRegisterSuccess, setShowRegisterSuccess] = useState(false);
+  const [registerError, setRegisterError] = useState('');
 
   const navigate = useNavigate();
   
-  const handleLoginSubmit = (e) => {
+  // ---------------- LOGIN ----------------
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    if (loginPassword === 'admin123') {
-      setLoginError('');
-      setShowLoginSuccess(true)
-      setTimeout(() => {
-        setShowLoginSuccess(false);
-        navigate('/admin-dashboard');
-      }, 1500);
-    } else {
-      setLoginError('Email atau password yang Anda masukkan salah. Silahkan coba lagi.');
+    setLoginError('');
+
+    try {
+      const res = await fetch("https://695c746e79f2f34749d43d5c.mockapi.io/users");
+      const users = await res.json();
+
+      const foundUser = users.find(
+        (user) =>
+          user.Email.toLowerCase() === loginEmail.toLowerCase() &&
+          user.Password === loginPassword
+      );
+
+      if (foundUser) {
+        setShowLoginSuccess(true);
+        setTimeout(() => {
+          setShowLoginSuccess(false);
+          navigate('/admin-dashboard');
+        }, 1500);
+      } else {
+        setLoginError('Email atau password yang Anda masukkan salah. Silahkan coba lagi.');
+      }
+    } catch (err) {
+      console.error("Gagal login:", err);
+      setLoginError('Terjadi kesalahan, coba lagi nanti.');
     }
   };
 
-  const handleRegisterSubmit = (e) => {
+  // ---------------- REGISTER ----------------
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
+    setRegisterError('');
+
     if (registerPassword !== registerConfirmPassword) {
-      alert('Password tidak cocok!');
+      setRegisterError('Password dan konfirmasi password tidak cocok!');
       return;
     }
 
-    setShowRegisterSuccess(true);
-    setTimeout(() => {
-      setShowRegisterSuccess(false);
-      setActiveTab('login');
-      setLoginEmail(registerEmail);
-      setLoginPassword(registerPassword);
-    }, 1500);
+    try {
+      // POST user baru ke MockAPI
+      const res = await fetch("https://695c746e79f2f34749d43d5c.mockapi.io/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          NamaLengkap: registerName,
+          Email: registerEmail,
+          Password: registerPassword,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Gagal membuat akun");
+
+      setShowRegisterSuccess(true);
+      setTimeout(() => {
+        setShowRegisterSuccess(false);
+        setActiveTab('login');
+        setLoginEmail(registerEmail);
+        setLoginPassword(registerPassword);
+        setRegisterName('');
+        setRegisterEmail('');
+        setRegisterPassword('');
+        setRegisterConfirmPassword('');
+      }, 1500);
+    } catch (err) {
+      console.error("Gagal register:", err);
+      setRegisterError('Terjadi kesalahan saat registrasi. Coba lagi.');
+    }
   };
 
   const tabClass = (tab) =>
@@ -76,7 +118,7 @@ const AdminLogin = () => {
           </button>
         </div>
 
-        {/*LOGIN*/}
+        {/* LOGIN */}
         {activeTab === 'login' && (
           <form onSubmit={handleLoginSubmit} className="space-y-4 text-left">
             {loginError && (
@@ -93,7 +135,8 @@ const AdminLogin = () => {
               required
               className={`w-full p-2 rounded-lg border ${
                 loginError ? 'border-red-400 bg-red-50' : 'border-gray-400'
-              }`}/>
+              }`}
+            />
 
             <div className="flex items-center border border-gray-400 rounded-lg bg-gray-50 px-3">
               <svg className="w-4 h-4 text-gray-500 mr-2" fill="currentColor" viewBox="0 0 24 24">
@@ -129,9 +172,15 @@ const AdminLogin = () => {
           </form>
         )}
 
-        {/*REGISTER*/}
+        {/* REGISTER */}
         {activeTab === 'register' && (
           <form onSubmit={handleRegisterSubmit} className="space-y-4 text-left">
+            {registerError && (
+              <div className="flex items-start gap-2 rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+                <span>{registerError}</span>
+              </div>
+            )}
+
             <input
               type="text"
               placeholder="Nama lengkap"
@@ -140,7 +189,6 @@ const AdminLogin = () => {
               required
               className="w-full p-2 border border-gray-400 rounded-lg"
             />
-
             <input
               type="email"
               placeholder="Masukkan Email"
@@ -149,7 +197,6 @@ const AdminLogin = () => {
               required
               className="w-full p-2 border border-gray-400 rounded-lg"
             />
-
             {[registerPassword, registerConfirmPassword].map((_, i) => (
               <div
                 key={i}
@@ -172,11 +219,9 @@ const AdminLogin = () => {
                 />
               </div>
             ))}
-
             <button className="w-full py-3 bg-pink-400 text-white rounded-lg font-bold hover:bg-pink-500 transition">
               Daftar
             </button>
-
             <p className="text-sm text-gray-600 text-center">
               Sudah punya akun?{' '}
               <span
@@ -189,7 +234,7 @@ const AdminLogin = () => {
           </form>
         )}
 
-        {/*Ini UNtuk Dialog Login Berhasil*/}
+        {/* DIALOG */}
         <Dialog open={showLoginSuccess} onOpenChange={setShowLoginSuccess}>
           <DialogContent className="sm:max-w-[400px]">
             <DialogHeader>

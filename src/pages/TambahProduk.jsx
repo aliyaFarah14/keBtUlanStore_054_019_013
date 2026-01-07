@@ -1,25 +1,20 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminHeader from "../components/admin/AdminHeader";
 import ProductForm from "../components/admin/ProductForm";
-import { ProductContext } from "../context/ProductContext";
+import { useProducts } from "../context/ProductContext";
 
 export default function TambahProduk() {
-  const { addProduct } = useContext(ProductContext);
+  const { addProduct } = useProducts();
   const [success, setSuccess] = useState(false);
-  const [lastProduct, setLastProduct] = useState(null);
   const navigate = useNavigate();
 
   const handleAddProduct = (product) => {
     addProduct(product);
-    setLastProduct(product);
     setSuccess(true);
   };
 
-  const handleTambahLagi = () => {
-    setSuccess(false);
-  };
-
+  const handleTambahLagi = () => setSuccess(false);
   const handleSelesai = () => {
     setSuccess(false);
     navigate("/admin-dashboard");
@@ -30,7 +25,6 @@ export default function TambahProduk() {
       <AdminHeader />
       <div className="max-w-2xl mx-auto mt-6 relative">
         <h2 className="text-xl font-bold mb-4">Tambah Produk Baru</h2>
-
         <button
           type="button"
           onClick={() => navigate("/admin-dashboard")}
@@ -38,7 +32,7 @@ export default function TambahProduk() {
         >
           Kembali
         </button>
-        
+
         <ProductForm onAdd={handleAddProduct} />
 
         {success && (
@@ -60,10 +54,7 @@ export default function TambahProduk() {
             </div>
           </div>
         )}
-
-        {success && (
-          <div className="fixed inset-0 bg-black opacity-30 z-40"></div>
-        )}
+        {success && <div className="fixed inset-0 bg-black opacity-30 z-40"></div>}
       </div>
     </div>
   );
