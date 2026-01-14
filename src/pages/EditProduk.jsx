@@ -19,7 +19,9 @@ export default function EditProduk() {
   const { products, editProduct } = useContext(ProductContext);
   const navigate = useNavigate();
 
-  const productToEdit = products.find((p) => p.id === Number(id));
+  const productToEdit = products.find(
+    (p) => String(p.id) === String(id)
+  );
 
   const [nama, setNama] = useState("");
   const [harga, setHarga] = useState("");
@@ -29,13 +31,13 @@ export default function EditProduk() {
   const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
-    if (productToEdit) {
-      setNama(productToEdit.nama);
-      setHarga(productToEdit.harga);
-      setStock(productToEdit.stock);
+    if (products.length > 0 && productToEdit) {
+      setNama(productToEdit.nama || "");
+      setHarga(productToEdit.harga || "");
+      setStock(productToEdit.stock || "");
       setImage(productToEdit.image || "");
     }
-  }, [productToEdit]);
+  }, [products, productToEdit]);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -72,7 +74,7 @@ export default function EditProduk() {
           className="bg-white p-4 rounded-md shadow space-y-3 relative"
         >
           <input
-            placeholder="Nama Produk"
+            placeholder="nama"
             value={nama}
             onChange={(e) => setNama(e.target.value)}
             className="w-full border p-2 rounded"
